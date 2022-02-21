@@ -37,3 +37,12 @@ data "aws_security_group" "linux-sg" {
 // AWS Customer Account Name Alias
 data "aws_iam_account_alias" "account_name" {}
 
+// Fetch Recent Updated AMI from Ericsson Private Cloud Images
+data "aws_ami" "ami" {
+  most_recent = true
+  owners      = [var.ami_owner]
+  filter {
+    name   = "name"
+    values = ["*${var.operatingsystem}*"]
+  }
+}

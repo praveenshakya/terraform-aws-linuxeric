@@ -8,7 +8,7 @@ provider "aws" {
 
 // EC2 Instance Configuration
 resource "aws_instance" "ec2" {
-  ami                    = "ami-0b0af3577fe5e3532"
+  ami                    = data.aws_ami.ami.id
   instance_type          = var.instance_type
   subnet_id              = data.aws_subnet.subnet.id
   vpc_security_group_ids = [data.aws_security_group.linux-sg.id]
